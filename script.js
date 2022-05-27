@@ -32,7 +32,8 @@ const quizData = [
 ];
 
 let currentQuestion = 0;
-const answers = [];
+let answers = [];
+
 const setQuizData = () => {
 	const { question, a, b, c, d } = quizData[currentQuestion];
 	const answers = [a, b, c, d];
@@ -100,12 +101,17 @@ const handleSubmit = () => {
 	} else {
 		const { correct, wrong, score } = calculateScore();
 		alert(`Completed! Your score is: ${score}\nCorrect: ${correct}\nWrong: ${wrong}`);
-		currentQuestion = 0;
+		resetState();
 	}
 	setState();
 };
 
 btnEl.addEventListener('click', handleSubmit);
+
+const resetState = () => {
+	currentQuestion = 0;
+	answers = [];
+};
 
 const setState = () => {
 	clearInputs();
